@@ -18,7 +18,8 @@ face_haar_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 app = Flask(__name__)
 
 camera = cv2.VideoCapture(0)
-faceDetectedStack = []
+faceDetectedQueue = []
+emotionDetectedQueue = []
 def gen_frames():  # generate frame by frame from camera
     while True:
         # Capture frame by frame
@@ -41,7 +42,7 @@ def gen_frames():  # generate frame by frame from camera
                 img_pixels = np.expand_dims(img_pixels, axis = 0)  
                 img_pixels /= 255  
         
-                print(img_pixels.shape)
+                #print(img_pixels.shape)
                 
                 predictions = model.predict(img_pixels)  
         
@@ -54,17 +55,30 @@ def gen_frames():  # generate frame by frame from camera
                 print(predicted_emotion)
                 cv2.putText(frame, predicted_emotion, (int(x), int(y)), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 71, 17), 2)  
                 cv2.putText(frame, 'JESUS FUCKING CHRIST', (int(x-20), int(y-20)), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 71, 17), 3)
-                  
-            print(entered)
-            faceDetectedStack.append(entered)
-            #faceDetectedStack.pop()
-            if len(faceDetectedStack) > 5: 
-                 faceDetectedStack.pop()
-            #for i in faceDetectedStack:
-            print("STACK")
-            print(faceDetectedStack) 
+                #EMOTION DETECTED QUEUE      
+                emotionDetectedQueue.append(predicted_emotion)
+                if len(emotionDetectedQueue ) > 10: 
+                    emotionDetectedQueue.pop(0)
+                #EMOTION DETECTED QUEUE
+                #print("STACK ")
+                #print(emotionDetectedQueue)
+                if allEmotionsAre(emotionDetectedQueue, "neutral"):
+                    print("All emotions are neutral")
+                #if (all(emotionDetectedQueue == "neutral")):
+                #    print("All emotions are neutral")
 
-            if len(set(faceDetectedStack)) == 1:
+            #FACE DETECTED QUEUE      
+            faceDetectedQueue.append(entered)
+            #faceDetectedQueue.pop()
+            if len(faceDetectedQueue) > 25: 
+                 faceDetectedQueue.pop(0)
+            nofacesdetected = True
+            for item in faceDetectedQueue:
+                if item == True:
+                    nofacesdetected = False
+            
+
+            if nofacesdetected:
                 print("We should play music") 
             resized_img = cv2.resize(frame, (1000, 700))  
             
@@ -80,6 +94,12 @@ def video_feed():
     #Video streaming route. Put this in the src attribute of an img tag
     return Response(gen_frames(), mimetype='multipart/x-mixed-replace; boundary=frame')
 
+def allEmotionsAre(array, var):
+    same = True
+    for item in array:
+        if item != var:
+            same = False    
+    return same
 
 @app.route('/')
 def index():
