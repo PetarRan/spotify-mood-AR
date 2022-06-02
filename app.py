@@ -119,6 +119,12 @@ def allEmotionsAre(array, var):
 def scannedEmotion():
     return render_template('index.html', embed=emotion_embed)
 
+
+@app.route('/getMood', methods=['GET'])
+def testfn():
+    message = emotion_embed
+    return message  # serialize and use JSON headers
+
 @app.route('/')
 def index():
     embed_start = "none"

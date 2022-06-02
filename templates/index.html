@@ -287,27 +287,8 @@
     <div class="mainImg">
 
     </div>
-    <nav class="navbar navbar-expand navbar-light bg-light" style="background-color: #c3c3c3;">
-        <a class="navbar-brand" href="#"><img src="https://i.ibb.co/rd6x0dC/logo.png" class="logo" alt=""></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#about">About us</a>
-                </li>
-            </ul>
-        </div>
-    
-
-    </nav>
     <div class="parallax-content baner-content" id="home">
-        <div class="container centered">
+        <div class="container centered" id="camera_div">
             <div class="row">
                 <div class="col-lg-8  offset-lg-2">
                     <img src="{{ url_for('video_feed') }}" width="100%" class="mainFrame">
@@ -316,8 +297,8 @@
         </div>
         <div class="container">
             <div class="d-flex justify-content-center mt-2">
-                <h3 id="emotion-detect">
-                    {{embed}}
+                <h3 id="emotion-detect" class="hidden">
+                    <!--{{embed}}-->
                 </h3>
             </div>
         </div>
@@ -350,10 +331,30 @@
             <div class="albumInfo">
                 <span><b>Bohemian Rhapsody</b></span><br/>
                 <span>Queen</span><br /><br />
-                <button class="button-63">Stop camera</button>
+                <button class="button-63" id="stopRecord">Stop camera</button>
             </div>
             
         </div>
+
+        <nav class="navbar navbar-expand navbar-dark mt-5 mb-5">
+            <a class="navbar-brand" href="#"><img src="https://i.ibb.co/rd6x0dC/logo.png" class="logo" alt=""></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About us</a>
+                    </li>
+                </ul>
+            </div>
+        
+    
+        </nav>
         
 
     </div>

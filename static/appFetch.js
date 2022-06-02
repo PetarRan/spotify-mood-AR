@@ -10,7 +10,7 @@ const neutral = ["chill", "6QAVsGp118XZLQrBe38r5O", "1Anm3140fyp1gH95Qgo3Id", "3
 
 var clientID = "56f882c5e3344098ba39ad26fbea91f2"
 var secretID = "382f7cf705fc455a8783ed71fad474b4"
-var access_token = "BQBuZiQrdfNWt_1UEgBATscTITpt3uF0o99JVUz0O8DFFQ7BLWy0q2g80THfqmDXp6d9LCPuPvRMlbb7OrT0zbn1lMtlw5ZTk0BEDgSuViX89TalWzkH-KK9NtnKNZwvYEjCIRFRSH2LjKFNpf97MgnepQQsfUlfG6rrWJV2fOixgN23QE7F1g";
+var access_token = "BQBqOY90vRT9o0dbg-Fyd3SBppdEX3dXRck6biQqPvEoEtRn111SFqfC_cEiy4EN2sTL81m67alNjoc3S--zT87I7RycE_5JD9v3VHsX10Tl38LhO81JKlmXMU8EJih7tHaItccHQhbgupD-dmRGihrj4laoc3Gsax3c1tZRjFFEehC4HEh0qA";
 var refresh_token = "AQDivpdyP-VTIy4ZilSQ6P45h9C2RPWXgp-jXB1WBgk3JHZYgpm9hI50VO7F1kUlrNB2ptjmYoKuabIOFuV1MtO304HWzj-VRhhRaNcRk3z0YvqyK16s4WosZJCFPGnYZ5A";
 
 const PLAY = "https://api.spotify.com/v1/me/player/play";
@@ -18,6 +18,60 @@ const GETSONG = "https://api.spotify.com/v1/tracks/"
 const GETPLAYLIST = "https://api.spotify.com/v1/playlists/"
 const GETbyKEYWORD = "https://api.spotify.com/v1/search?"
 const GETbyALBUM = "https://api.spotify.com/v1/albums/"
+
+
+$(document).ready(function () {
+
+    $('#emotion-detect').on('DOMSubtreeModified', function(){
+        let currentEmotion = $("#emotion-detect").html()
+        let emotionBefore = ''
+        if(currentEmotion == 'stop'){
+            alert('skip song')
+            getPlaylistNew(emotionBefore)
+        } else {
+            emotionBefore = currentEmotion
+            getPlaylistNew(currentEmotion)
+        }
+    });
+});
+
+function auth(){
+
+    var authOptions = {
+        url: 'https://accounts.spotify.com/api/token',
+        form: {
+          code: code,
+          redirect_uri: redirect_uri,
+          grant_type: 'authorization_code'
+        },
+        headers: {
+          'Authorization': 'Basic ' + (new Buffer(client_id + ':' + client_secret).toString('base64'))
+        },
+        json: true
+      };
+    
+      request.post(authOptions, function(error, response, body) {
+        if (!error && response.statusCode === 200) {
+    
+          var access_token = body.access_token,
+              refresh_token = body.refresh_token;
+    
+          var options = {
+            url: 'https://api.spotify.com/v1/me',
+            headers: { 'Authorization': 'Bearer ' + access_token },
+            json: true
+          };
+    
+          // use the access token to access the Spotify Web API
+          request.get(options, function(error, response, body) {
+            console.log(body);
+          });
+    
+        }})
+
+}
+
+
 
 
 function getPlaylistNew(emotion) {
@@ -31,7 +85,7 @@ function getPlaylistNew(emotion) {
         })
         .then(p => {
             p.json().then(data => {
-                console.log(data.playlists.items[0])
+                console.log(data)
                 //FURTHER FUNCTION
             });
         });
@@ -44,7 +98,7 @@ function getPlaylistNew(emotion) {
         })
         .then(p => {
             p.json().then(data => {
-                console.log(data.name)
+                console.log(data)
                 //FURTHER FUNCTION
             });
         });
