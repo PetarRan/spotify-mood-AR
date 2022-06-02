@@ -66,7 +66,7 @@ def gen_frames():  # generate frame by frame from camera
                 #print(emotionDetectedQueue)
                 for emotion_element in emotions:
                     if allEmotionsAre(emotionDetectedQueue, emotion_element):
-                        print("All emotions are" + emotion_element)
+                        print("All emotions are " + emotion_element)
                 #if (all(emotionDetectedQueue == "neutral")):
                 #    print("All emotions are neutral")
 
