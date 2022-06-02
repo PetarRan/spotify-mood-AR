@@ -33,7 +33,7 @@ def gen_frames():  # generate frame by frame from camera
         
             for (x,y,w,h) in faces_detected:
                 print('WORKING')
-                cv2.rectangle(frame,(x,y),(x+w,y+h),(255,0,0),thickness=7)  
+                cv2.rectangle(frame,(x,y),(x+w,y+h),(10, 207, 57),thickness=7)  
                 roi_gray=gray_img[y:y+w,x:x+h]          #cropping region of interest i.e. face area from  image  
                 roi_gray=cv2.resize(roi_gray,(48,48))  
                 img_pixels = image.img_to_array(roi_gray)  
@@ -51,8 +51,11 @@ def gen_frames():  # generate frame by frame from camera
                 emotions = ['angry', 'disgust', 'fear', 'happy', 'sad', 'surprise', 'neutral']  
                 predicted_emotion = emotions[max_index]  
                 print(predicted_emotion)
-                cv2.putText(frame, predicted_emotion, (int(x), int(y)), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,0,255), 2)  
-        
+                cv2.putText(frame, predicted_emotion, (int(x), int(y)), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 71, 17), 2)  
+                cv2.putText(frame, 'JESUS FUCKING CHRIST', (int(x-20), int(y-20)), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 71, 17), 3)
+                  
+                #image = cv2.imread('https://upload.wikimedia.org/wikipedia/commons/c/c0/Jesus_Christ_-_Hofmann.jpg')
+                #cv2.imshow('a',image)
             resized_img = cv2.resize(frame, (1000, 700))  
             
             ret, buffer = cv2.imencode('.jpg', frame)
