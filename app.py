@@ -64,8 +64,9 @@ def gen_frames():  # generate frame by frame from camera
                 #EMOTION DETECTED QUEUE
                 #print("STACK ")
                 #print(emotionDetectedQueue)
-                if allEmotionsAre(emotionDetectedQueue, "neutral"):
-                    print("All emotions are neutral")
+                for emotion_element in emotions:
+                    if allEmotionsAre(emotionDetectedQueue, emotion_element):
+                        print("All emotions are" + emotion_element)
                 #if (all(emotionDetectedQueue == "neutral")):
                 #    print("All emotions are neutral")
 
@@ -101,7 +102,7 @@ def allEmotionsAre(array, var):
     for item in array:
         if item != var:
             same = False    
-    return same
+    return same, var
 
 @app.route('/')
 def index():
