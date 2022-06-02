@@ -17,6 +17,8 @@ face_haar_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 
 app = Flask(__name__)
 
+emotion_embed = ''
+
 camera = cv2.VideoCapture(0)
 faceDetectedStack = []
 def gen_frames():  # generate frame by frame from camera
@@ -85,9 +87,9 @@ def video_feed():
 def index():
     return render_template('index.html')
 
-@app.route('/emotion_response')
+@app.route('/emotion_response', methods=['GET'])
 def emotion_response():
-    emotion_embed='@ALLE DODI YOUR RESPONSE WILL GO HERE.'
+    emotion_embed='TEST EMOTION'
     return render_template('index.html', embed=emotion_embed)
 
 
