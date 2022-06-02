@@ -19,6 +19,7 @@ const GETPLAYLIST = "https://api.spotify.com/v1/playlists/"
 const GETbyKEYWORD = "https://api.spotify.com/v1/search?"
 const GETbyALBUM = "https://api.spotify.com/v1/albums/"
 
+
 function getPlaylistNew(emotion) {
     let index = getRandomInt(5)
     if(index == 0){

@@ -17,7 +17,15 @@ face_haar_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 
 app = Flask(__name__)
 
-emotion_embed = 't'
+emotion_embed = 'none'
+
+def set_emotion_embed(value):
+    global emotion_embed
+    emotion_embed = value
+
+def get_emotion_embed():
+    print(emotion_embed)
+    return emotion_embed
 
 camera = cv2.VideoCapture(0)
 faceDetectedQueue = []
@@ -67,7 +75,7 @@ def gen_frames():  # generate frame by frame from camera
                 for emotion_element in emotions:
                     if allEmotionsAre(emotionDetectedQueue, emotion_element):
                         print("All emotions are " + emotion_element)
-                        emotion_embed = emotion_element
+                        set_emotion_embed(emotion_element)
                 #if (all(emotionDetectedQueue == "neutral")):
                 #    print("All emotions are neutral")
 
@@ -84,6 +92,8 @@ def gen_frames():  # generate frame by frame from camera
 
             if nofacesdetected:
                 print("We should play music") 
+                value = "stop"
+                set_emotion_embed(value)
             resized_img = cv2.resize(frame, (1000, 700))  
             
             ret, buffer = cv2.imencode('.jpg', frame)
@@ -105,9 +115,14 @@ def allEmotionsAre(array, var):
             same = False    
     return same
 
+@app.route('/scanned', methods=['GET'])
+def scannedEmotion():
+    return render_template('index.html', embed=emotion_embed)
+
 @app.route('/')
 def index():
-    return render_template('index.html', embed=emotion_embed)
+    embed_start = "none"
+    return render_template('index.html', embed = embed_start)
 
 
 if __name__ == '__main__':
