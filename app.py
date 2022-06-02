@@ -85,6 +85,11 @@ def video_feed():
 def index():
     return render_template('index.html')
 
+@app.route('/emotion_response')
+def emotion_response():
+    emotion_embed='@ALLE DODI YOUR RESPONSE WILL GO HERE.'
+    return render_template('index.html', embed=emotion_embed)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
