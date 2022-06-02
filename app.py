@@ -18,7 +18,7 @@ face_haar_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 app = Flask(__name__)
 
 camera = cv2.VideoCapture(0)
-
+faceDetectedStack = []
 def gen_frames():  # generate frame by frame from camera
     while True:
         # Capture frame by frame
@@ -29,9 +29,10 @@ def gen_frames():  # generate frame by frame from camera
             gray_img= cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)  
         
             faces_detected = face_haar_cascade.detectMultiScale(gray_img, 1.32, 5)  
-            
-        
+            entered = False
+
             for (x,y,w,h) in faces_detected:
+                entered = True
                 print('WORKING')
                 cv2.rectangle(frame,(x,y),(x+w,y+h),(10, 207, 57),thickness=7)  
                 roi_gray=gray_img[y:y+w,x:x+h]          #cropping region of interest i.e. face area from  image  
@@ -54,8 +55,17 @@ def gen_frames():  # generate frame by frame from camera
                 cv2.putText(frame, predicted_emotion, (int(x), int(y)), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 71, 17), 2)  
                 cv2.putText(frame, 'JESUS FUCKING CHRIST', (int(x-20), int(y-20)), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 71, 17), 3)
                   
-                #image = cv2.imread('https://upload.wikimedia.org/wikipedia/commons/c/c0/Jesus_Christ_-_Hofmann.jpg')
-                #cv2.imshow('a',image)
+            print(entered)
+            faceDetectedStack.append(entered)
+            #faceDetectedStack.pop()
+            if len(faceDetectedStack) > 5: 
+                 faceDetectedStack.pop()
+            #for i in faceDetectedStack:
+            print("STACK")
+            print(faceDetectedStack) 
+
+            if len(set(faceDetectedStack)) == 1:
+                print("We should play music") 
             resized_img = cv2.resize(frame, (1000, 700))  
             
             ret, buffer = cv2.imencode('.jpg', frame)
