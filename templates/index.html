@@ -23,30 +23,283 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <title>Spotify Mood App</title>
+    <style>
+        body {
+            /*
+            background: rgb(13,121,9);
+            background: linear-gradient(356deg, rgba(13,121,9,1) 0%, rgba(0,255,231,1) 100%);
+            background-size: cover;
+            background-repeat: no-repeat;
+            */
+            background-color: black !important;
+            color: white !important;
+            font-size: 16px;
+        }   
+        .mainFrame {
+            border-radius: 20px;
+            border: 4px solid #5fb881;
+        }
+        .logo {
+            width: 80px;
+            max-width: 90%;
+        }
+        nav {
+            background-color: black !important;
+            font-size: 13px;
+        }/*
+        #about {
+            max-width: 90%;
+            width: 650px;
+            margin: auto;
+            padding: 5px;
+            margin-top: 150px;
+        }*/
+        h2,h1 {
+            font-size: 25px;
+        }
+        body, html {
+    overflow-x: hidden;
+    scroll-behavior: smooth
+}
+footer, .foota {
+    justify-content: center;
+    text-align: center;
+}
+
+.sec {
+    padding: 40px;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+.eic {
+    color: #4EC26A;
+}
+.left, .right {
+    width:50%;
+    max-width: 600px;
+    min-width: 330px;
+    margin: 40px;
+}
+section {
+    justify-content: center;
+    padding-inline:  5%;
+    
+}
+nav {
+    height: 80px !important;
+}
+main {
+    background-color: #212529;
+}
+.mainTitle {
+    color: #4EC26A;
+    font-weight: 800;
+    background-color:#212529;
+    margin: 0px;
+    padding: 30px;
+    padding-top: 80px;
+    text-align: center;
+}
+.white {
+    color:  white;
+} 
+#playstore {
+    width: 200px;
+}
+.qr-code {
+    width: 150px;
+}
+#bigger {
+    font-size:  60px;
+    color:  white;
+}
+@media only screen and (max-width: 850px) {
+    section {
+        margin-top: 50px;
+        max-width: 95%;
+    }
+  .sec {
+    display: inline;
+    margin:  auto;
+  }
+  .left, .right {
+    margin:  auto;
+    text-align: center;
+    width:  100%;
+    max-width: 95%;
+  }
+  .illustrations {
+    max-width: 80%;
+    padding:  0px;
+    min-width: 100px;
+    width: 90%;
+  }
+}
+@media only screen and (max-width: 400px) {
+    .left, .right {
+        width:  95%;
+        max-width: 95%;
+        min-width: 95%;
+        padding: 0;
+    }
+    section {
+        width:  95%;
+        margin: 0;
+        padding:  0;
+    }
+}
+
+
+.text-info {
+	color: #4EC26A !important;
+}
+.block-content {
+    border-radius: 20px !important;
+}
+
+#about-us, #faq {
+    padding-top: 30px;
+}
+#faq {
+    background-color: white;
+}
+
+
+footer, .footer-copyright {
+    background-color: black !important;
+}
+
+.clean-block::before, .mainTitle {
+	background-color: #111111 !important;
+}
+
+
+/* CSS */
+.button-63 {
+    margin:auto;
+    margin-bottom:40px;
+  align-items: center;
+  background-image: linear-gradient(144deg,#4EC26A, #4ec282 50%,#0eaa98);
+  border: 0;
+  border-radius: 8px;
+  box-shadow: rgba(151, 65, 252, 0.2) 0 15px 30px -5px;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  display: flex;
+  font-family: Phantomsans, sans-serif;
+  font-size: 20px;
+  justify-content: center;
+  line-height: 1em;
+  max-width: 100%;
+  min-width: 140px;
+  padding: 19px 24px;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.button-63:active,
+.button-63:hover {
+  outline: 0;
+}
+
+@media (min-width: 768px) {
+  .button-63 {
+    font-size: 24px;
+    min-width: 196px;
+  }
+}
+
+.button-63:hover {
+    background-image: linear-gradient(144deg,#3b9851, #3d9b67 50%,#0b8a7c);
+}
+
+canvas {
+    margin-top: -50%;
+}
+footer, .foota {
+    justify-content: center;
+    text-align: center;
+
+}
+footer {
+    border-color: #0b8a7c;
+    padding: 20px;
+}
+a {
+    color: white;
+    margin: 30px;
+}
+    </style>
 </head>
 
-<body class="bg-dark bg-img" style="background-image: url('/static/bg.png');">
-
+<body class="">
+    <div class="mainImg">
+        
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="background-color: #c3c3c3;">
+        <a class="navbar-brand" href="#"><img src="https://i.ibb.co/rd6x0dC/logo.png" class="logo" alt=""></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#about">About us</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
     <div class="parallax-content baner-content" id="home">
-        <div class="container">
+        <div class="container centered" >
             <div class="row">
                 <div class="col-lg-8  offset-lg-2">
-                    <h1 class="mt-5">
-                        <font color="white" style="font-family:verdana;" style="font-size:300%;"> Spotify Mood App
-                        </font>
-                    </h1>
-                    <img src="{{ url_for('video_feed') }}" width="100%">
+                    <h1 style="margin: auto !important; margin-bottom: 30px !important; font-size: 40px; text-align: center; margin-top: 40px !important;"> Spotify Mood App </h1>
+                    <img src="{{ url_for('video_feed') }}" width="100%" class="mainFrame">
                 </div>
             </div>
         </div>
         <div class="container">
             <div class="d-flex justify-content-center mt-2">
-                <h2>
+                <h3>
                     To Play the Song, cover your face.
-                </h2>
+                </h3>
             </div>
         </div>
     </div>
+    <section  id="about">
+        <div class="sec">
+            <div class="right">
+                <img class="illustrations" src="https://i.ibb.co/cyMr5vp/about.png" width="100%" />
+            </div>
+            <div class="left">
+                <h1>What is spotify mood</h1>
+                <p>Spotify Mood app recommends music based on your mood. It uses machine learning algorithms to detect your mood through emotion recognition. It will use your camera to detect the emotion and than through a spotify API you-ll be able to listen to a song based on your mood. You are also going to be able to change the song covering your face. </p>            
+
+            </div>
+    </section>
+    
+    <footer class="page-footer dark">
+        <!-- <div>
+            <ul class="foota" >
+                <a class="foota" href="index.html">Home</a>
+                <a class="foota"  href="#about">About us</a>
+            </ul> -->
+        </div>
+        <div class="footer-copyright" style="margin: auto;">
+            <p>© 2022 Spotify Mood Copyright</p>
+        </div>
+    </footer>
 </body>
 
 </html>
