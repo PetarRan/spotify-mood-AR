@@ -66,7 +66,8 @@ def gen_frames():  # generate frame by frame from camera
                 #print(emotionDetectedQueue)
                 for emotion_element in emotions:
                     if allEmotionsAre(emotionDetectedQueue, emotion_element):
-                        print("All emotions are" + emotion_element)
+                        print("All emotions are " + emotion_element)
+                        emotion_embed = emotion_element
                 #if (all(emotionDetectedQueue == "neutral")):
                 #    print("All emotions are neutral")
 
@@ -106,11 +107,10 @@ def allEmotionsAre(array, var):
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', embed=emotion_embed)
 
 @app.route('/emotion_response', methods=['GET'])
 def emotion_response():
-    emotion_embed='TEST EMOTION'
     return render_template('index.html', embed=emotion_embed)
 
 
