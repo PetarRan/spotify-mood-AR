@@ -107,7 +107,7 @@ def allEmotionsAre(array, var):
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', embed=emotion_embed)
 
 @app.route('/emotion_response', methods=['GET'])
 def emotion_response():
