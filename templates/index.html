@@ -240,6 +240,7 @@
             touch-action: manipulation;
             white-space: nowrap;
             cursor: pointer;
+            font-size: 14px;
         }
 
         .button-63:active,
@@ -249,8 +250,9 @@
 
         @media (min-width: 768px) {
             .button-63 {
-                font-size: 24px;
-                min-width: 196px;
+                font-size: 16px;
+                min-width: 146px;
+                margin-left: 0px;
             }
         }
 
@@ -319,6 +321,41 @@
                 </h3>
             </div>
         </div>
+        <style>
+            .songDiv {
+                border: 1px solid #0b8a7c;
+                width: fit-content;
+                padding: 20px;
+                display: flex;
+                border-radius: 20px;
+                max-width: 90%;
+                margin: auto;
+                justify-content: center;
+                align-items: center;
+                height: 200px;
+            }
+            .albumCover {
+                flex: 1;
+                height: 140px;
+                border-radius: 20px;
+                margin-right: 40px;
+            }
+            .albumInfo {
+
+                margin-right: 20px;
+            }
+        </style>
+        <div class="songDiv">
+            <img src="https://cdns-images.dzcdn.net/images/cover/6706f1154083f461a348508c28030a30/350x350.jpg" alt="" class="albumCover">
+            <div class="albumInfo">
+                <span><b>Bohemian Rhapsody</b></span><br/>
+                <span>Queen</span><br /><br />
+                <button class="button-63">Stop camera</button>
+            </div>
+            
+        </div>
+        
+
     </div>
     <section id="about">
         <div class="sec">
