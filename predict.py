@@ -44,7 +44,7 @@ while True:
         print(predicted_emotion)
         cv2.putText(test_img, predicted_emotion, (int(x), int(y)), cv2.FONT_HERSHEY_SIMPLEX, 1, (0,0,255), 2)  
         
-    #s_img = cv2.imread("https://upload.wikimedia.org/wikipedia/commons/c/c0/Jesus_Christ_-_Hofmann.jpg")
+    s_img = cv2.imread("https://upload.wikimedia.org/wikipedia/commons/c/c0/Jesus_Christ_-_Hofmann.jpg")
     resized_img = cv2.resize(test_img, (1000, 700))  
     #x_offset=y_offset=50
     #resized_img[y_offset:y_offset+s_img.shape[0], x_offset:x_offset+s_img.shape[1]] = s_img
