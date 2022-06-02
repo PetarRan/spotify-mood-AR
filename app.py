@@ -102,7 +102,7 @@ def allEmotionsAre(array, var):
     for item in array:
         if item != var:
             same = False    
-    return same, var
+    return same
 
 @app.route('/')
 def index():
