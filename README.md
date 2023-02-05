@@ -2,6 +2,8 @@
 
 # Spotfy Mood App
 
+![image](https://user-images.githubusercontent.com/70757499/216840667-cfe639d1-61e4-4ccd-827b-43aef4aba5e8.png)
+
 Contributors:
 
 ![GitHub Contributors Image](https://contrib.rocks/image?repo=PetarRan/spotify-mood-AR)
